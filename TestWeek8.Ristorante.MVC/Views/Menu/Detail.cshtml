@@ -1,0 +1,43 @@
+﻿@model IEnumerable<PiattoViewModel>
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <h1>Elenco dei piatti</h1>
+        <br />
+        @if (User.IsInRole("Ristoratore"))
+        {
+            <a class="btn btn-success" asp-controller="Piatti" asp-action="Create" role="button">New Menu</a>
+        }
+        <p />
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Piatto</th>
+                    <th scope="col">Tipologia</th>
+                    <th scope="col">Prezzo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        @*HTML HELPER*@
+                        <td>@item.Nome</td>
+                        <td>@item.Tipologia</td>
+                        <td>@item.Prezzo</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+                    <th> @Model.Count() </th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="col-3"></div>
+    </div>
+</div>
